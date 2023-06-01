@@ -1,18 +1,11 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, ScrollView, FlatList, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, ScrollView, FlatList, TouchableOpacity ,Image} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import ItemLista from "../components/item";
 
 export default function Menu() {
 
-  const [pessoas, setPessoas] = useState([
-    { nome: "Segurança Pessoal Feminina(SPF)", key: "1" },
-    { nome: "Recursos de Emergência", key: "2" },
-    { nome: "Adicionar localização em tempo real", key: "3" },
-    { nome: "Tutoriais de Segurança", key: "5" },
-    { nome: "Recursos de segurança personalizados", key: "6" },
-    { nome: "Alertas", key: "7" },
-    { nome: "Suporte", key: "8" },
-  ]);
+
   const [dados, setDados] = useState([
     { dado: "Meus Dados", key: "1" },
     { dado: "Recursos Utilizados", key: "2" },
@@ -21,7 +14,10 @@ export default function Menu() {
   return (
     <View style={styles.container}>
       <View style={styles.iconeContainer}>
-        <MaterialCommunityIcons name="face-woman" size={60} color="#8c4f4d" />
+      <Image
+        source={require('../assets/GP2.png')}
+        style={styles.logo}
+      />
         <Text style={styles.boldText}>Recursos do Usuário</Text>
       </View>
 
@@ -37,13 +33,8 @@ export default function Menu() {
           )}
         />
       </View>
-
       <ScrollView>
-        {pessoas.map((item) => (
-          <View key={item.key} style={styles.itemContainer}>
-            <Text style={styles.item}>{item.nome}</Text>
-          </View>
-        ))}
+      <ItemLista/>
       </ScrollView>
     </View>
   );
@@ -53,9 +44,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: 5,
-    marginVertical: 10,
-    marginTop: 160,
+    backgroundColor:"white"
 
+  },
+  logo:{
+    width: 60,
+    height: 60,
+    marginBottom: 10,
+    borderRadius:100,
+    borderWidth: 1,
+    borderColor: '#8c4f4d',
   },
   itemContainer: {
     height: 130,
@@ -70,34 +68,28 @@ const styles = StyleSheet.create({
     color: "white",
   },
   iconeContainer: {
-    position: "absolute",
-    top: -150,
-    left: 1,
-    right: 0,
-    alignItems: "center",
-    justifyContent: "center",
-    marginVertical: 30,
-    marginRight: 100,
-    flexDirection: "row",
+    marginTop:20,
+    alignItems:'center',
+    flexDirection: "column",
+
   },
   boldText: {
-    marginTop: 20,
     fontWeight: "bold",
-    marginLeft: 10,
-    fontSize: 19,
+    fontSize: 22,
     color: "#8c4f4d",
 
   },
   quadrado: {
-    marginTop: 10,
-    backgroundColor: "#f4dde7",
-    borderRadius: 50,
-    padding: 20,
-    top: -50,
+    justifyContent:'center',
+    alignItems:'center',
+    backgroundColor: "f4dde7",
+    padding: 10,
+    marginBottom:20,
+    marginLeft:15,
   },
   caixaContainer: {
     backgroundColor: "#8c4f4d",
-    height: 80,
+    height: 70,
     width: '40%',
     justifyContent: 'center',
     alignItems: 'center',

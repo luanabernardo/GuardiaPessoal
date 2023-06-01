@@ -6,7 +6,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import Botao from '../components/botao'
-
+import Input from '../components/input';
 
 export default function CadastroScreen({ navigation }) {
 
@@ -17,7 +17,7 @@ export default function CadastroScreen({ navigation }) {
   const [confirmSenha, setConfirmSenha] = useState("");
   const [value, setValue] = useState('');
   const [showMessage, setShowMessage] = useState(false);
-  
+
   useEffect(() => {
     if (value === 'gustavo') {
       setShowMessage(true);
@@ -46,43 +46,35 @@ export default function CadastroScreen({ navigation }) {
   };
 
   const handleCadastro = () => {
-  
-          console.log('Nome:', nome);
-          console.log('E-mail:', email);
-          console.log('Senha:', senha);
-          console.log('Telefone:', telefone);
-          navigation.navigate('Home');
-        };
+
+    console.log('Nome:', nome);
+    console.log('E-mail:', email);
+    console.log('Senha:', senha);
+    console.log('Telefone:', telefone);
+    navigation.navigate('Home');
+  };
 
   return (
     <View style={styles.container}>
-
-      <Text style={styles.title}>Tela De Cadastro</Text>
-
       <View style={styles.caixinha}>
 
         <View>
 
-        <Text style={styles.caixa}>Nome</Text>
-        <View style={styles.view1}>
-          <FontAwesome5 name="user" size={24} color="black" />
-          <TextInput
-            multiline
-            placeholder='Enter your name'
-            onChangeText={setValue}
-            value={value}
-          />
-         
+          <Text style={styles.texto}>Nome:</Text>
+          <View>
+            <Input multiline
+              placeholder='Enter your name'
+              onChangeText={setValue}
+              value={value} />
           </View>
           {showMessage && (
             <Text style={styles.message}> *nome não está disponivel </Text>
           )}
         </View>
 
-        <Text style={styles.caixa}>E-mail</Text>
-        <View style={styles.view1}>
-          <MaterialIcons name="email" size={24} color="black" />
-          <TextInput
+        <Text style={styles.texto}>E-mail:</Text>
+        <View >
+          <Input
             multiline
             placeholder='Enter your email'
             onChangeText={Email}
@@ -90,23 +82,20 @@ export default function CadastroScreen({ navigation }) {
           />
         </View>
 
-        <Text style={styles.caixa}>Telefone</Text>
-        <View style={styles.view1}>
-          <Entypo name="phone" size={24} color="black" />
-          <TextInput
+        <Text style={styles.texto}>Telefone:</Text>
+        <View>
+          <Input
             keyboardType='numeric'
             placeholder='Enter your phone number'
             onChangeText={Telefone}
             value={telefone}
-            secureTextEntry={true}
           />
 
         </View>
 
-        <Text style={styles.caixa}>Senha</Text>
-        <View style={styles.view1}>
-          <Entypo name="key" size={24} color="black" />
-          <TextInput
+        <Text style={styles.texto}>Senha:</Text>
+        <View>
+          <Input
             keyboardType='numeric'
             placeholder='Enter your password'
             onChangeText={Senha}
@@ -115,10 +104,9 @@ export default function CadastroScreen({ navigation }) {
           />
         </View>
 
-        <Text style={styles.caixa}>Confirmar Senha</Text>
-        <View style={styles.view1}>
-          <Entypo name="key" size={24} color="black" />
-          <TextInput
+        <Text style={styles.texto}>Confirmar Senha:</Text>
+        <View >
+          <Input
             keyboardType='numeric'
             placeholder='Confirm your password'
             onChangeText={ConfirmSenha}
@@ -144,14 +132,13 @@ export default function CadastroScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f4dde7',
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   title: {
-    
-fontSize: 40,
+    fontSize: 40,
     marginTop: 20,
     paddingTop: 20,
     marginVertical: 30,
@@ -159,35 +146,26 @@ fontSize: 40,
     fontWeight: 'bold',
     color: '#8c4f4d',
   },
-  view1: {
-    borderColor: 'black',
-    flexDirection: 'row',
-    marginBottom: 2,
-    borderWidth: 1,
-    padding: 10,
-    width: 300,
-    borderRadius: 10,
-    marginTop: 10,
-    fontSize: 16,
+  texto:{
+    marginTop: 20,
+    fontSize: 18,
   },
   caixa: {
-    marginRight: 20,
-    marginTop: 10,
+    marginRight: 20, 
+    padding:2,
   },
 
   caixinha: {
     marginTop: 20,
     padding: 40,
     backgroundColor: 'white',
-    borderRadius: 50,
+    borderRadius: 20,
   },
-
-
   message: {
-      color: 'red',
-      fontSize: 15,
-      fontStyle: 'italic',
-      fontWeight: 'bold',
-    }
-  
+    color: 'red',
+    fontSize: 15,
+    fontStyle: 'italic',
+    fontWeight: 'bold',
+  }
+
 });
